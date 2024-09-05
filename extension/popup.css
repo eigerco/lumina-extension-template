@@ -1,0 +1,11 @@
+body {
+	width: 15em;
+}
+
+span.data-span {
+	float: right;
+}
+
+.hidden {
+	visibility: hidden;
+}
