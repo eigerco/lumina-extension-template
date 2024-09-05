@@ -39,11 +39,13 @@ function handleConnect(port) {
 		console.debug('forwarding to worker: ', message);
 		channel.port1.postMessage(message);
 	});
-	channel.port1.onmessage = (message) => {
-		let data = message.data;
-		sanitiseMessage(data);
-		console.debug("forwarding from worker: ", data);
-		port.postMessage(data);
+	channel.port1.onmessage = (original_message) => {
+		// data field isn't considered own property of MessageEvent (but is inherited from Event),
+		// so chrome's json clone will ommit this field. Hand craft the message with expected structure as a workaround.
+		let message = { data: original_message.data };
+		sanitiseMessage(message);
+		console.debug("forwarding from worker: ", message);
+		port.postMessage(message);
 	};
 
 	// post message with a transfer of a newly created port
