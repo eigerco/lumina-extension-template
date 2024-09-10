@@ -1,4 +1,4 @@
-import init, { NodeClient, NodeConfig, Network } from "lumina-node-wasm";
+import init, { NodeClient, NodeConfig, Network } from "@fl0rek/lumina-node-wasm";
 import init_worker from './worker.js'
 
 // must be called before using any of the functionality imported from wasm

@@ -1,6 +1,6 @@
 // example of NodeClient showing off starting node and monitoring its syncing status
 
-import init, { NodeClient, NodeConfig, Network } from "lumina-node-wasm";
+import init, { NodeClient, NodeConfig, Network } from "@fl0rek/lumina-node-wasm";
 
 // must be called before using any of the functionality imported from wasm
 await init();

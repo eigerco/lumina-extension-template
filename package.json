@@ -4,6 +4,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "lumina-node-wasm": "file:../lumina-main/node-wasm/pkg/lumina-node-wasm-0.1.1.tgz"
+    "@fl0rek/lumina-node-wasm": "^0.1.3"
   }
 }

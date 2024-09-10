@@ -1,7 +1,7 @@
 // wasm stack traces can be pretty long, increase the default limit
 Error.stackTraceLimit = 99;
 
-import init, { NodeWorkerWrapper, NodeClient } from "lumina-node-wasm";
+import init, { NodeWorker, NodeClient } from "@fl0rek/lumina-node-wasm";
 
 export default async function init_worker() {
 	return new Worker(new URL("worker.js", import.meta.url));
@@ -26,7 +26,7 @@ if (typeof WorkerGlobalScope !== "undefined" && typeof self !== "undefined"
 
 	await init();
 
-	self.worker = new NodeWorkerWrapper();
+	self.worker = new NodeWorker();
 	console.log("starting worker: ", self.worker);
 
 	while (true) {
