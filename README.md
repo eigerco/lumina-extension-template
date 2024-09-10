@@ -3,7 +3,7 @@ Template repository to get you started with developing a browser extension which
 
 ## Building 
 
-1. Install other dependencies 
+1. Install dependencies 
 ```bash
 $ npm install
 ```
