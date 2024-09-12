@@ -8,7 +8,6 @@ const config = {
     entry: {
         popup: './src/popup.js',
         background: './src/background.js',
-        worker: './src/worker.js'
     },
     output: {
         path: path.resolve(__dirname, 'extension'),
