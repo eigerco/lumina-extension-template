@@ -1,9 +1,9 @@
 {
-  "devDependencies": {
-    "copy-webpack-plugin": "^12.0.2",
-    "webpack-cli": "^5.1.4"
-  },
-  "dependencies": {
-    "lumina-node": "lumina-node@0.2.0"
-  }
+    "devDependencies": {
+        "copy-webpack-plugin": "^12.0.2",
+        "webpack-cli": "^5.1.4"
+    },
+    "dependencies": {
+        "lumina-node": "^0.2.0"
+    }
 }

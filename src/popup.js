@@ -14,47 +14,48 @@ self.lumina = await new NodeClient(connection);
 await updateStats();
 
 document.getElementById('start').addEventListener('click', async (event) => {
-	let network_config;
-	let network = document.getElementById('network-chooser').value;
-	if (network  === 'mainnet') {
-		network_config = NodeConfig.default(Network.Mainnet);
-	} else if (network === 'arabica') {
-		network_config = NodeConfig.default(Network.Arabica);
-	} else if (network === 'mocha') {
-		network_config = NodeConfig.default(Network.Mocha);
-	} else {
-		console.error("unrecognised network ", network);
-		return;
-	}
-	console.log("requesting connection to", network_config);
+    let networkConfig;
+    let network = document.getElementById('network-chooser').value;
+    if (network  === 'mainnet') {
+        networkConfig = NodeConfig.default(Network.Mainnet);
+    } else if (network === 'arabica') {
+        networkConfig = NodeConfig.default(Network.Arabica);
+    } else if (network === 'mocha') {
+        networkConfig = NodeConfig.default(Network.Mocha);
+    } else {
+        console.error("unrecognised network ", network);
+        return;
+    }
+    console.log("requesting connection to", networkConfig);
 
-	[...document.getElementsByClassName('launcher')].forEach((e) => e.disabled = true);
+    [...document.getElementsByClassName('launcher')].forEach((e) => e.disabled = true);
 
-	let started = await self.lumina.start(network_config);
-	console.log("started:", started);
+    let started = await self.lumina.start(networkConfig);
+    console.log("started:", started);
 
-	updateStats();
+    updateStats();
 })
 
 async function updateStats() {
-	if (await self.lumina.is_running()) {
-		await self.lumina.wait_connected();
+    if (await self.lumina.isRunning()) {
+        await self.lumina.waitConnected();
 
-		document.getElementById('status').classList.remove('hidden');
+        document.getElementById('status').classList.remove('hidden');
 
-		let peer_tracker_info = await self.lumina.peer_tracker_info();
-		document.getElementById('peers').innerText = peer_tracker_info.num_connected_peers;
-		document.getElementById('trusted-peers').innerText = peer_tracker_info.num_connected_trusted_peers;
+        let peerTrackerInfo = await self.lumina.peerTrackerInfo();
+        document.getElementById('peers').innerText = peerTrackerInfo.numConnectedPeers;
+        document.getElementById('trusted-peers').innerText = peerTrackerInfo.numConnectedTrustedPeers;
 
-		let syncer_info = await self.lumina.syncer_info();
-		document.getElementById('network-head').innerText = syncer_info.subjective_head;
-		document.getElementById("stored-ranges").innerText = syncer_info.stored_headers.map((range) => {
-			return `${range.start}..${range.end}`;
-		}).join(", ");
+        let syncerInfo = await self.lumina.syncerInfo();
+        console.log(syncerInfo);
+        document.getElementById('network-head').innerText = syncerInfo.subjectiveHead;
+        document.getElementById("stored-ranges").innerText = syncerInfo.storedHeaders.map((range) => {
+            return `${range.start}..${range.end}`;
+        }).join(", ");
 
-		setTimeout(updateStats, 1000);
-	} else {
-		document.getElementById('status').classList.add('hidden');
+        setTimeout(updateStats, 1000);
+    } else {
+        document.getElementById('status').classList.add('hidden');
 
-	}
+    }
 }
