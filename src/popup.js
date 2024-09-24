@@ -14,8 +14,8 @@ self.lumina = await new NodeClient(connection);
 await updateStats();
 
 document.getElementById("start").addEventListener("click", async (event) => {
-  let networkConfig;
-  let network = document.getElementById("network-chooser").value;
+  const networkConfig;
+  const network = document.getElementById("network-chooser").value;
   if (network === "mainnet") {
     networkConfig = NodeConfig.default(Network.Mainnet);
   } else if (network === "arabica") {
