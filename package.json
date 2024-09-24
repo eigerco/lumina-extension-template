@@ -4,6 +4,6 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
-        "lumina-node": "^0.2.0"
+        "lumina-node": "^0.3.0"
     }
 }

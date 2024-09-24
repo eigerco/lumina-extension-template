@@ -43,13 +43,13 @@ async function updateStats() {
         document.getElementById('status').classList.remove('hidden');
 
         let peerTrackerInfo = await self.lumina.peerTrackerInfo();
-        document.getElementById('peers').innerText = peerTrackerInfo.numConnectedPeers;
-        document.getElementById('trusted-peers').innerText = peerTrackerInfo.numConnectedTrustedPeers;
+        document.getElementById('peers').innerText = peerTrackerInfo.num_connected_peers;
+        document.getElementById('trusted-peers').innerText = peerTrackerInfo.num_connected_trusted_peers;
 
         let syncerInfo = await self.lumina.syncerInfo();
         console.log(syncerInfo);
-        document.getElementById('network-head').innerText = syncerInfo.subjectiveHead;
-        document.getElementById("stored-ranges").innerText = syncerInfo.storedHeaders.map((range) => {
+        document.getElementById('network-head').innerText = syncerInfo.subjective_head;
+        document.getElementById("stored-ranges").innerText = syncerInfo.stored_headers.map((range) => {
             return `${range.start}..${range.end}`;
         }).join(", ");
 
