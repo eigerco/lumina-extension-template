@@ -32,7 +32,7 @@ document.getElementById("start").addEventListener("click", async (event) => {
     (e) => (e.disabled = true),
   );
 
-  let started = await self.lumina.start(networkConfig);
+  const started = await self.lumina.start(networkConfig);
   console.log("started:", started);
 
   updateStats();
@@ -44,13 +44,13 @@ async function updateStats() {
 
     document.getElementById("status").classList.remove("hidden");
 
-    let peerTrackerInfo = await self.lumina.peerTrackerInfo();
+    const peerTrackerInfo = await self.lumina.peerTrackerInfo();
     document.getElementById("peers").innerText =
       peerTrackerInfo.num_connected_peers;
     document.getElementById("trusted-peers").innerText =
       peerTrackerInfo.num_connected_trusted_peers;
 
-    let syncerInfo = await self.lumina.syncerInfo();
+    const syncerInfo = await self.lumina.syncerInfo();
     console.log(syncerInfo);
     document.getElementById("network-head").innerText =
       syncerInfo.subjective_head;

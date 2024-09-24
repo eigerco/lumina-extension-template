@@ -1,10 +1,4 @@
-import init, {
-  NodeWorker,
-  spawnNode,
-  NodeClient,
-  NodeConfig,
-  Network,
-} from "lumina-node";
+import { spawnNode } from "lumina-node";
 
 // must be called before using any of the functionality imported from wasm
 await init();
@@ -14,7 +8,7 @@ function handleConnect(port) {
   console.log("client connected");
   // we aren't allowed to transfer the runtime.Port we've received to worker
   // so we patch the connection through using MessageChannel
-  let channel = new MessageChannel();
+  const channel = new MessageChannel();
   port.onMessage.addListener((message) => {
     console.debug("forwarding to worker: ", message);
     channel.port1.postMessage(message);
@@ -22,7 +16,7 @@ function handleConnect(port) {
   channel.port1.onmessage = (originalMessage) => {
     // data field isn't considered own property of MessageEvent (but is inherited from Event),
     // so chrome's json clone will ommit this field. Hand craft the message with expected structure as a workaround.
-    let message = { data: originalMessage.data };
+    const message = { data: originalMessage.data };
     console.debug("forwarding from worker: ", message);
     port.postMessage(message);
   };
