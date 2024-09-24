@@ -23,9 +23,6 @@ const config = {
       },
     ],
   },
-  experiments: {
-    asyncWebAssembly: true,
-  },
 };
 
 module.exports = () => {
