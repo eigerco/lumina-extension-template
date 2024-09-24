@@ -1,8 +1,5 @@
 import { spawnNode } from "lumina-node";
 
-// must be called before using any of the functionality imported from wasm
-await init();
-
 // popup -(runtime.connect)-> background -(MessageChannel)-> Worker
 function handleConnect(port) {
   console.log("client connected");
