@@ -1,25 +1,33 @@
 <html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="popup.css"/>
-	</head>
-	<body>
-		<h2>Lumina</h2>
-		<div>
-			<select id="network-chooser" class="launcher">
-				<option value="mainnet">mainnet</option>
-				<option value="mocha">mocha</option>
-				<option value="arabica">arabica</option>
-			</select>
-			<button id="start" class="launcher">Start</a>
-		</div>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h2>Lumina</h2>
+    <div>
+      <select id="network-chooser" class="launcher">
+        <option value="mainnet">mainnet</option>
+        <option value="mocha">mocha</option>
+        <option value="arabica">arabica</option>
+      </select>
+      <button id="start" class="launcher">Start</button>
+    </div>
 
-		<div id="status" class="hidden">
-			<div>network head: <span id="network-head" class="data-span"></span></div>
-			<div>store ranges: <span id="stored-ranges" class="data-span"></span></div>
-			<div>peers: <span class="data-span"><span id="peers"></span>(<span id="trusted-peers"></span> trusted)<span></div>
-		</div>
+    <div id="status" class="hidden">
+      <div>network head: <span id="network-head" class="data-span"></span></div>
+      <div>
+        store ranges: <span id="stored-ranges" class="data-span"></span>
+      </div>
+      <div>
+        peers:
+        <span class="data-span"
+          ><span id="peers"></span>(<span id="trusted-peers"></span>
+          trusted)</span
+        >
+      </div>
+    </div>
 
-		<script src="popup.js"></script>
-	</body>
+    <script src="popup.js"></script>
+  </body>
 </html>
