@@ -1,11 +1,11 @@
 body {
-	width: 15em;
+  width: 15em;
 }
 
 span.data-span {
-	float: right;
+  float: right;
 }
 
 .hidden {
-	visibility: hidden;
+  visibility: hidden;
 }
