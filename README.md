@@ -15,7 +15,7 @@ $ npm install
 2. Use webpack to build the extension
 
 ```bash
-$ npx webpack --config webpack.config.js
+$ npm run build
 ```
 
 3. You can load unpacked extension for development from the `extension` directory or package it once you're ready
