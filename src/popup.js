@@ -7,14 +7,14 @@ await init();
 
 // NodeClient will send messages and expect responses over provided port.
 // See background.js and worker.js to see how the commands get to the worker
-let connection = chrome.runtime.connect();
+const connection = chrome.runtime.connect();
 self.lumina = await new NodeClient(connection);
 
 // poll status and update UI
 await updateStats();
 
 document.getElementById("start").addEventListener("click", async (event) => {
-  const networkConfig;
+  let networkConfig;
   const network = document.getElementById("network-chooser").value;
   if (network === "mainnet") {
     networkConfig = NodeConfig.default(Network.Mainnet);
