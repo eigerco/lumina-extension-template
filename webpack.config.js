@@ -7,6 +7,7 @@ const config = {
     popup: "./src/popup.js",
     background: "./src/background.js",
   },
+  devtool: isProduction ? false : "source-map",
   output: {
     path: path.resolve(__dirname, "extension"),
   },
@@ -17,11 +18,10 @@ const config = {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset",
       },
-      {
-        test: /\.wasm$/,
-        type: "asset/resource",
-      },
     ],
+  },
+  experiments: {
+    asyncWebAssembly: true,
   },
 };
 

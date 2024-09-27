@@ -1,4 +1,12 @@
-import { spawnNode } from "lumina-node";
+import { NodeWorker, NodeClient } from "lumina-node-wasm";
+
+let connectChannel = new MessageChannel();
+
+// keep it as variable in self, so that we can play around with it on the background page of the extension
+self.lumina = new NodeWorker(connectChannel.port1);
+self.lumina.run();
+
+self.luminaClient = await new NodeClient(connectChannel.port2);
 
 // popup -(runtime.connect)-> background -(MessageChannel)-> Worker
 function handleConnect(port) {
@@ -18,10 +26,6 @@ function handleConnect(port) {
     port.postMessage(message);
   };
 
-  self.lumina.addConnectionToWorker(channel.port2);
+  self.luminaClient.addConnectionToWorker(channel.port2);
 }
-
-// keep it as variable in self, so that we can play around with it on the background page of the extension
-self.lumina = await spawnNode();
-
 self.chrome.runtime.onConnect.addListener(handleConnect);

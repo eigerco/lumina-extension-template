@@ -1,14 +1,14 @@
 // example of NodeClient showing off starting node and monitoring its syncing status
 
-import init, { NodeClient, NodeConfig, Network } from "lumina-node-wasm";
+import { NodeClient, NodeConfig, Network } from "lumina-node-wasm";
 
 // must be called before using any of the functionality imported from wasm
-await init();
+//await init();
 
 // NodeClient will send messages and expect responses over provided port.
 // See background.js and worker.js to see how the commands get to the worker
 const connection = chrome.runtime.connect();
-self.lumina = await new NodeClient(connection);
+self.luminaInPopup = await new NodeClient(connection);
 
 // poll status and update UI
 await updateStats();
@@ -26,31 +26,31 @@ document.getElementById("start").addEventListener("click", async (event) => {
     console.error("unrecognised network ", network);
     return;
   }
-  console.log("requesting connection to", networkConfig);
+  console.log("requesting connection to", networkConfig.bootnodes);
 
   [...document.getElementsByClassName("launcher")].forEach(
     (e) => (e.disabled = true),
   );
 
-  const started = await self.lumina.start(networkConfig);
+  const started = await self.luminaInPopup.start(networkConfig);
   console.log("started:", started);
 
   updateStats();
 });
 
 async function updateStats() {
-  if (await self.lumina.isRunning()) {
-    await self.lumina.waitConnected();
+  if (await self.luminaInPopup.isRunning()) {
+    await self.luminaInPopup.waitConnected();
 
     document.getElementById("status").classList.remove("hidden");
 
-    const peerTrackerInfo = await self.lumina.peerTrackerInfo();
+    const peerTrackerInfo = await self.luminaInPopup.peerTrackerInfo();
     document.getElementById("peers").innerText =
       peerTrackerInfo.num_connected_peers;
     document.getElementById("trusted-peers").innerText =
       peerTrackerInfo.num_connected_trusted_peers;
 
-    const syncerInfo = await self.lumina.syncerInfo();
+    const syncerInfo = await self.luminaInPopup.syncerInfo();
     console.log(syncerInfo);
     document.getElementById("network-head").innerText =
       syncerInfo.subjective_head;
