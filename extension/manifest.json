@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "icons": {
     "32": "./lumina.png"
   },
@@ -8,15 +8,16 @@
   "homepage_url": "https://github.com/eigerco/lumina",
   "version": "0.0.1",
   "background": {
-    "scripts": ["background.js"],
-    "persistent": true,
+    "service_worker": "background.js",
     "type": "module"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "./lumina.png",
     "default_title": "Lumina",
     "default_popup": "popup.html"
   },
   "permissions": ["unlimitedStorage"],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
 }
