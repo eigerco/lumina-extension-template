@@ -9,7 +9,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "lumina-node": "^0.3.0",
-    "lumina-node-wasm": "file:../lumina-main/node-wasm/pkg/lumina-node-wasm-0.2.0.tgz"
+    "lumina-node": "^0.5.0",
+    "lumina-node-wasm": "^0.5.0"
   }
 }

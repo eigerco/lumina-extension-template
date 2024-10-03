@@ -2,9 +2,6 @@
 
 import { NodeClient, NodeConfig, Network } from "lumina-node-wasm";
 
-// must be called before using any of the functionality imported from wasm
-//await init();
-
 // NodeClient will send messages and expect responses over provided port.
 // See background.js and worker.js to see how the commands get to the worker
 const connection = chrome.runtime.connect();
